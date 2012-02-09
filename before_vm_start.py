@@ -7,6 +7,7 @@ import utils
 import hooking
 import tempfile
 import traceback
+import base64
 from xml.dom import minidom
 
 '''
@@ -122,7 +123,7 @@ if os.environ.has_key('floppyinject'):
 
         path = '/tmp/%s' % filename
 
-        createFloppy(filename, path, content)
+        createFloppy(filename, path, base64.decodestring(content))
 
         domxml = hooking.read_domxml()
         addFloppyElement(domxml, path)
